@@ -93,12 +93,15 @@ func TestLoad(t *testing.T) {
 	t.Run("fallback to legacy config when default is missing", func(t *testing.T) {
 		tempDir := t.TempDir()
 		t.Setenv("XDG_CONFIG_HOME", tempDir)
+		t.Setenv("HOME", tempDir)
+		t.Setenv("AppData", tempDir)
 
-		legacyDir := filepath.Join(tempDir, consts.LegacyName)
+		legacyDefault := legacyDefaultPath()
+		legacyDir := filepath.Dir(legacyDefault)
 		if err := os.MkdirAll(legacyDir, os.ModePerm); err != nil {
 			t.Fatal(err)
 		}
-		if err := os.WriteFile(filepath.Join(legacyDir, fileName), []byte("mouse = false"), os.ModePerm); err != nil {
+		if err := os.WriteFile(legacyDefault, []byte("mouse = false"), os.ModePerm); err != nil {
 			t.Fatal(err)
 		}
 

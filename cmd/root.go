@@ -17,9 +17,9 @@ import (
 func Run() error {
 	flag.Usage = func() {
 		out := flag.CommandLine.Output()
-		fmt.Fprintf(out, "%s - %s\n\n", consts.DisplayName, consts.Tagline)
-		fmt.Fprintf(out, "Usage:\n  %s [options]\n\n", consts.Name)
-		fmt.Fprintf(out, "Options:\n")
+		_, _ = fmt.Fprintf(out, "%s - %s\n\n", consts.DisplayName, consts.Tagline) //nolint:errcheck
+		_, _ = fmt.Fprintf(out, "Usage:\n  %s [options]\n\n", consts.Name)         //nolint:errcheck
+		_, _ = fmt.Fprintf(out, "Options:\n")                                       //nolint:errcheck
 		flag.PrintDefaults()
 	}
 
