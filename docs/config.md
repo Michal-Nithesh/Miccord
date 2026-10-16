@@ -1114,7 +1114,7 @@ Default: `{ attributes = "dim" }`
 
 ### theme.messages_list.own_reaction_style
 
-Default: `{ attributes = "bold" }`
+Default: `{ foreground = "green", attributes = "bold" }`
 
 ### theme.messages_list.message_style
 
@@ -1180,7 +1180,7 @@ Default: `{ attributes = "dim" }`
 
 ### theme.help.short_key_style
 
-Default: `{ attributes = "dim" }`
+Default: `{ foreground = "green" }`
 
 ### theme.help.short_desc_style
 
@@ -1188,7 +1188,7 @@ Default: `{}`
 
 ### theme.help.full_key_style
 
-Default: `{ attributes = "dim" }`
+Default: `{ foreground = "green", attributes = "bold" }`
 
 ### theme.help.full_desc_style
 

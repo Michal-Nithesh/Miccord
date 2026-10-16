@@ -34,6 +34,11 @@ func getToken() tview.Cmd {
 	return func() tview.Msg {
 		token, err := keyring.Get(keyringService, keyringUser)
 		if err != nil {
+			if legacyToken, legacyErr := keyring.Get(consts.LegacyName, keyringUser); legacyErr == nil && legacyToken != "" {
+				slog.Info("migrated token from legacy keyring service", "legacyService", consts.LegacyName)
+				_ = keyring.Set(keyringService, keyringUser, legacyToken)
+				return tokenMsg(legacyToken)
+			}
 			slog.Info("failed to retrieve token from keyring", "err", err)
 			return loginMsg{}
 		}
@@ -85,7 +90,7 @@ func (m *Model) showChat(token string) tview.Cmd {
 // show closes any open dialog after the shown model changed and returns what it needs done, with init its first command.
 func (m *Model) show(init tview.Cmd) tview.Cmd {
 	m.dialog = nil
-	return tview.Batch(tview.SetTitle(consts.Name), init)
+	return tview.Batch(tview.SetTitle(consts.DisplayName), init)
 }
 
 func (m *Model) finishDialog(index int) tview.Cmd {

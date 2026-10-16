@@ -7,6 +7,7 @@ import (
 
 	"github.com/ayn2op/arikawa/v3/utils/ws"
 	"github.com/ayn2op/discordo/internal/config"
+	"github.com/ayn2op/discordo/internal/consts"
 	"github.com/ayn2op/discordo/internal/logger"
 	"github.com/ayn2op/discordo/internal/ui/root"
 	"github.com/ayn2op/tview"
@@ -14,6 +15,14 @@ import (
 )
 
 func Run() error {
+	flag.Usage = func() {
+		out := flag.CommandLine.Output()
+		fmt.Fprintf(out, "%s - %s\n\n", consts.DisplayName, consts.Tagline)
+		fmt.Fprintf(out, "Usage:\n  %s [options]\n\n", consts.Name)
+		fmt.Fprintf(out, "Options:\n")
+		flag.PrintDefaults()
+	}
+
 	configPath := flag.String("config-path", config.DefaultPath(), "path of the configuration file")
 	logPath := flag.String("log-path", logger.DefaultPath(), "path of the log file")
 	logLevel := flag.String("log-level", "info", "log level")
@@ -21,7 +30,7 @@ func Run() error {
 	flag.Parse()
 
 	if *showVersion {
-		fmt.Printf("%s\n", buildVersion())
+		fmt.Println(buildVersion())
 		return nil
 	}
 

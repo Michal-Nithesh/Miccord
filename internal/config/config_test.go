@@ -89,6 +89,27 @@ func TestLoad(t *testing.T) {
 			t.Fatalf("got = %+v, want = %+v", *cfg, defCfg)
 		}
 	})
+
+	t.Run("fallback to legacy config when default is missing", func(t *testing.T) {
+		tempDir := t.TempDir()
+		t.Setenv("XDG_CONFIG_HOME", tempDir)
+
+		legacyDir := filepath.Join(tempDir, consts.LegacyName)
+		if err := os.MkdirAll(legacyDir, os.ModePerm); err != nil {
+			t.Fatal(err)
+		}
+		if err := os.WriteFile(filepath.Join(legacyDir, fileName), []byte("mouse = false"), os.ModePerm); err != nil {
+			t.Fatal(err)
+		}
+
+		cfg, err := Load(DefaultPath())
+		if err != nil {
+			t.Fatal(err)
+		}
+		if cfg.Mouse != false {
+			t.Fatalf("expected legacy config mouse = false, got %v", cfg.Mouse)
+		}
+	})
 }
 
 // The generated docs show defaults as they are marshaled, so those must parse back to the same defaults.

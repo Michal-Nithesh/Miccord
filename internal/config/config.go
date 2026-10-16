@@ -8,7 +8,6 @@ import (
 	"path"
 	"path/filepath"
 	"slices"
-	"sync"
 	"unicode/utf8"
 
 	"github.com/BurntSushi/toml"
@@ -268,17 +267,25 @@ func Default() Config {
 	}
 }
 
-var dir = sync.OnceValue(func() string {
+func dir() string {
 	path, err := os.UserConfigDir()
 	if err != nil {
 		slog.Info("user config dir cannot be determined; falling back to the current dir", "err", err)
 		path = "."
 	}
 	return filepath.Join(path, consts.Name)
-})
+}
 
 func DefaultPath() string {
 	return filepath.Join(dir(), fileName)
+}
+
+func legacyDefaultPath() string {
+	path, err := os.UserConfigDir()
+	if err != nil {
+		path = "."
+	}
+	return filepath.Join(path, consts.LegacyName, fileName)
 }
 
 // Load reads the configuration file and parses it.
@@ -287,6 +294,18 @@ func Load(path string) (*Config, error) {
 	file, err := os.Open(path)
 	switch {
 	case os.IsNotExist(err):
+		if path == DefaultPath() {
+			legacyPath := legacyDefaultPath()
+			if legacyFile, legacyErr := os.Open(legacyPath); legacyErr == nil {
+				defer legacyFile.Close() //nolint:errcheck
+				slog.Info("config file does not exist at default path; falling back to legacy config", "legacyPath", legacyPath)
+				if _, err := toml.NewDecoder(legacyFile).Decode(&cfg); err != nil {
+					return nil, fmt.Errorf("failed to decode legacy config: %w", err)
+				}
+				cfg.applyDefaults()
+				return &cfg, nil
+			}
+		}
 		slog.Info("config file does not exist, falling back to the default config", "path", path, "err", err)
 	case err != nil:
 		return nil, fmt.Errorf("failed to open config file: %w", err)

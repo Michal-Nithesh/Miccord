@@ -1,18 +1,21 @@
 package cmd
 
 import (
+	"fmt"
 	"runtime/debug"
+
+	"github.com/ayn2op/discordo/internal/consts"
 )
 
 func buildVersion() string {
-	info, ok := debug.ReadBuildInfo()
-	if !ok {
-		return "unknown"
+	ver := "v0.0.0-dev"
+	if info, ok := debug.ReadBuildInfo(); ok {
+		switch info.Main.Version {
+		case "", "(devel)":
+			ver = "v0.0.0-dev"
+		default:
+			ver = info.Main.Version
+		}
 	}
-	switch info.Main.Version {
-	case "", "(devel)":
-		return "v0.0.0-dev"
-	default:
-		return info.Main.Version
-	}
+	return fmt.Sprintf("%s %s", consts.DisplayName, ver)
 }

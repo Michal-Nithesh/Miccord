@@ -1,4 +1,4 @@
-// Package tree holds what discordo's trees share.
+// Package tree holds what MichalTerm's trees share.
 package tree
 
 import (

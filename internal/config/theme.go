@@ -282,7 +282,7 @@ func defaultTheme() ThemeConfig {
 			URLStyle:             StyleWrapper{blue},
 			AttachmentStyle:      StyleWrapper{plain.Foreground(color.Yellow)},
 			ReactionStyle:        dim,
-			OwnReactionStyle:     StyleWrapper{bold},
+			OwnReactionStyle:     StyleWrapper{bold.Foreground(color.Green)},
 			SelectedMessageStyle: StyleWrapper{plain.Reverse(true)},
 			Embeds: MessagesListEmbedsThemeConfig{
 				ProviderStyle:    StyleWrapper{italic.Dim(true)},
@@ -296,6 +296,6 @@ func defaultTheme() ThemeConfig {
 		},
 		MentionsList: MentionsListThemeConfig{SelectedStyle: StyleWrapper{plain.Reverse(true)}},
 		Dialog:       DialogThemeConfig{BackgroundStyle: dim},
-		Help:         HelpThemeConfig{ShortKeyStyle: dim, FullKeyStyle: dim},
+		Help:         HelpThemeConfig{ShortKeyStyle: StyleWrapper{plain.Foreground(color.Green)}, FullKeyStyle: StyleWrapper{bold.Foreground(color.Green)}},
 	}
 }

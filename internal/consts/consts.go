@@ -7,7 +7,12 @@ import (
 	"sync"
 )
 
-const Name = "discordo"
+const (
+	Name        = "michalterm"
+	DisplayName = "MichalTerm"
+	Tagline     = "Your conversations. Your terminal."
+	LegacyName  = "discordo"
+)
 
 // CacheDir returns the cache directory, creating it on first use.
 var CacheDir = sync.OnceValue(func() string {

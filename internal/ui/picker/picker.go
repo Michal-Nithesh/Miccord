@@ -1,4 +1,4 @@
-// Package picker holds what discordo's pickers share.
+// Package picker holds what MichalTerm's pickers share.
 package picker
 
 import (

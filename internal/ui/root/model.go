@@ -24,7 +24,10 @@ import (
 	"github.com/gdamore/tcell/v3"
 )
 
-const tokenEnvVarKey = "DISCORDO_TOKEN"
+const (
+	tokenEnvVarKey       = "MICHALTERM_TOKEN"
+	legacyTokenEnvVarKey = "DISCORDO_TOKEN"
+)
 
 // screen is what is shown above help.
 type screen int
@@ -59,13 +62,17 @@ var _ tview.Model[Model] = Model{}
 
 func (m Model) Init() tview.Cmd {
 	var cmd tview.Cmd
-	if token := os.Getenv(tokenEnvVarKey); token != "" {
+	token := os.Getenv(tokenEnvVarKey)
+	if token == "" {
+		token = os.Getenv(legacyTokenEnvVarKey)
+	}
+	if token != "" {
 		cmd = useToken(token)
 	} else {
 		cmd = getToken()
 	}
 	return tview.Batch(
-		tview.SetTitle(consts.Name),
+		tview.SetTitle(consts.DisplayName),
 		initClipboard(),
 		cmd,
 	)
