@@ -98,7 +98,12 @@ func TestLoad(t *testing.T) {
 				t.Setenv("HOME", tempDir)
 				t.Setenv("AppData", tempDir)
 
-				legacyDir := filepath.Join(tempDir, legacyName)
+				configBase, err := os.UserConfigDir()
+				if err != nil {
+					configBase = tempDir
+				}
+
+				legacyDir := filepath.Join(configBase, legacyName)
 				if err := os.MkdirAll(legacyDir, os.ModePerm); err != nil {
 					t.Fatal(err)
 				}
