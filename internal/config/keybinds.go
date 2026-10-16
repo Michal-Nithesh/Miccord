@@ -175,7 +175,9 @@ type Keybinds struct {
 	ToggleHelp Keybind `toml:"toggle_help"`
 	// Switch between compact and full keybind help.
 	ToggleFullHelp Keybind `toml:"toggle_full_help"`
-	Suspend        Keybind `toml:"suspend"`
+	// Toggle between dark (Night Owl) and light themes.
+	ToggleTheme Keybind `toml:"toggle_theme"`
+	Suspend     Keybind `toml:"suspend"`
 
 	FocusGuildsTree   Keybind `toml:"focus_guilds_tree"`
 	FocusMembersTree  Keybind `toml:"focus_members_tree"`
@@ -246,6 +248,7 @@ func defaultKeybinds() Keybinds {
 		LeaveVoice:           key("leave voice", "alt+l"),
 		ToggleHelp:           key("toggle help", "alt+."),
 		ToggleFullHelp:       key("full help", "ctrl+."),
+		ToggleTheme:          key("toggle theme", "alt+t"),
 		Suspend:              key("suspend", "ctrl+z"),
 
 		FocusGuildsTree:   key("guilds", "ctrl+g"),

@@ -1,8 +1,8 @@
 package root
 
 import (
-	"github.com/ayn2op/tview/layout"
 	"os"
+	"strings"
 
 	"github.com/Michal-Nithesh/miccord/internal/config"
 	"github.com/Michal-Nithesh/miccord/internal/consts"
@@ -20,6 +20,7 @@ import (
 	"github.com/ayn2op/tview/help"
 	"github.com/ayn2op/tview/inert"
 	"github.com/ayn2op/tview/keybind"
+	"github.com/ayn2op/tview/layout"
 	"github.com/ayn2op/tview/stack"
 	"github.com/gdamore/tcell/v3"
 )
@@ -127,6 +128,9 @@ func (m Model) Update(msg tview.Msg) (Model, tview.Cmd) {
 				m.helpShowAll = !m.helpShowAll
 			}
 			return m, nil
+		case keybind.Matches(msg, m.cfg.Keybinds.ToggleTheme.Keybind):
+			m.toggleTheme()
+			return m, nil
 		case keybind.Matches(msg, m.cfg.Keybinds.Suspend.Keybind):
 			return m, suspend()
 		case keybind.Matches(msg, m.cfg.Keybinds.Quit.Keybind):
@@ -223,5 +227,13 @@ func (m Model) dialogView() tview.Widget {
 func (m *Model) toggleHelp() {
 	if m.cfg.Help.Enabled {
 		m.helpVisible = !m.helpVisible
+	}
+}
+
+func (m *Model) toggleTheme() {
+	if strings.EqualFold(m.cfg.Theme.Mode, "light") {
+		m.cfg.SetThemeMode("dark")
+	} else {
+		m.cfg.SetThemeMode("light")
 	}
 }

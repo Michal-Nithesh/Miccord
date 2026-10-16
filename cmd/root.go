@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"log/slog"
+	"strings"
 
 	"github.com/Michal-Nithesh/miccord/internal/config"
 	"github.com/Michal-Nithesh/miccord/internal/consts"
@@ -26,6 +27,7 @@ func Run() error {
 	configPath := flag.String("config-path", config.DefaultPath(), "path of the configuration file")
 	logPath := flag.String("log-path", logger.DefaultPath(), "path of the log file")
 	logLevel := flag.String("log-level", "info", "log level")
+	themeFlag := flag.String("theme", "", "color theme mode: 'dark' (Night Owl) or 'light'")
 	showVersion := flag.Bool("version", false, "print version and exit")
 	flag.Parse()
 
@@ -49,6 +51,13 @@ func Run() error {
 	cfg, err := config.Load(*configPath)
 	if err != nil {
 		return fmt.Errorf("failed to load config: %w", err)
+	}
+	if *themeFlag != "" {
+		if strings.EqualFold(*themeFlag, "light") || strings.EqualFold(*themeFlag, "dark") {
+			cfg.SetThemeMode(*themeFlag)
+		} else {
+			return fmt.Errorf("invalid theme mode %q; supported modes are 'dark' and 'light'", *themeFlag)
+		}
 	}
 
 	screen, err := tcell.NewScreen()

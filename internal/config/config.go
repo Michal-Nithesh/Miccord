@@ -2,12 +2,14 @@ package config
 
 import (
 	"fmt"
+	"io"
 	"log/slog"
 	"mime"
 	"os"
 	"path"
 	"path/filepath"
 	"slices"
+	"strings"
 	"unicode/utf8"
 
 	"github.com/BurntSushi/toml"
@@ -292,6 +294,41 @@ func legacyDefaultPaths() []string {
 }
 
 // Load reads the configuration file and parses it.
+// SetThemeMode applies the built-in theme presets based on mode ("dark" for Night Owl, "light" for Light Owl).
+func (cfg *Config) SetThemeMode(mode string) {
+	if strings.EqualFold(mode, "light") {
+		cfg.Theme = LightOwlTheme()
+		cfg.Markdown.Theme = "github"
+	} else {
+		cfg.Theme = NightOwlTheme()
+		cfg.Markdown.Theme = "monokai"
+	}
+}
+
+// DefaultWithTheme returns the default configuration initialized with the given theme mode.
+func DefaultWithTheme(mode string) Config {
+	cfg := Default()
+	cfg.SetThemeMode(mode)
+	return cfg
+}
+
+func decodeConfigFile(file *os.File, cfg *Config) error {
+	data, err := io.ReadAll(file)
+	if err != nil {
+		return err
+	}
+	var raw struct {
+		Theme struct {
+			Mode string `toml:"mode"`
+		} `toml:"theme"`
+	}
+	_ = toml.Unmarshal(data, &raw)
+	if strings.EqualFold(raw.Theme.Mode, "light") {
+		*cfg = DefaultWithTheme("light")
+	}
+	return toml.Unmarshal(data, cfg)
+}
+
 func Load(path string) (*Config, error) {
 	cfg := Default()
 	file, err := os.Open(path)
@@ -302,7 +339,7 @@ func Load(path string) (*Config, error) {
 				if legacyFile, legacyErr := os.Open(legacyPath); legacyErr == nil {
 					defer legacyFile.Close() //nolint:errcheck
 					slog.Info("config file does not exist at default path; falling back to legacy config", "legacyPath", legacyPath)
-					if _, err := toml.NewDecoder(legacyFile).Decode(&cfg); err != nil {
+					if err := decodeConfigFile(legacyFile, &cfg); err != nil {
 						return nil, fmt.Errorf("failed to decode legacy config: %w", err)
 					}
 					cfg.applyDefaults()
@@ -315,7 +352,7 @@ func Load(path string) (*Config, error) {
 		return nil, fmt.Errorf("failed to open config file: %w", err)
 	default:
 		defer file.Close() //nolint:errcheck
-		if _, err := toml.NewDecoder(file).Decode(&cfg); err != nil {
+		if err := decodeConfigFile(file, &cfg); err != nil {
 			return nil, fmt.Errorf("failed to decode config: %w", err)
 		}
 	}

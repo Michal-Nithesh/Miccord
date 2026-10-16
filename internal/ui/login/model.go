@@ -4,6 +4,7 @@ import (
 	"github.com/ayn2op/tview/tabs"
 
 	"github.com/Michal-Nithesh/miccord/internal/config"
+	"github.com/Michal-Nithesh/miccord/internal/consts"
 	"github.com/Michal-Nithesh/miccord/internal/ui"
 	"github.com/Michal-Nithesh/miccord/internal/ui/login/password"
 	"github.com/Michal-Nithesh/miccord/internal/ui/login/qr"
@@ -65,7 +66,9 @@ func (m Model) View() tview.Widget {
 		Active(int(m.active)).
 		Keybind(tabAction).
 		OnSelect(func(i int) tview.Msg { return selectTabMsg(i) })
-	return ui.Box(column.New(t, content), m.cfg, false)
+	return ui.Box(column.New(t, content), m.cfg, false).
+		Title(" " + consts.DisplayName + " Login ").
+		Footer(" [ctrl+l / ctrl+h] Switch Tabs • [alt+t] Toggle Theme ")
 }
 
 // tabs returns the login methods as tabs set up by the tabs config.

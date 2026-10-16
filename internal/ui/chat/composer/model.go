@@ -111,11 +111,14 @@ func (m Model) Disabled() bool {
 func (m Model) placeholder() string {
 	switch {
 	case m.channel == nil:
-		return noChannelPlaceholder
+		return "Select a channel to start chatting..."
 	case m.disabled:
 		return noPermissionPlaceholder
 	}
-	return messagePlaceholder
+	if m.channel.Name != "" {
+		return "Message #" + m.channel.Name + "..."
+	}
+	return "Type a message..."
 }
 
 // View shows the text area in a box, taking keys if focused.
@@ -162,14 +165,17 @@ func (m *Model) box(focused bool) box.Widget {
 func (m Model) title() string {
 	switch data := m.sendMessageData; {
 	case m.editing != nil:
-		return "Editing"
+		return " Editing "
 	case data.Reference != nil:
 		if mention := data.AllowedMentions.RepliedUser; mention != nil && *mention {
-			return "[@] Replying to " + m.replyName
+			return " [@] Replying to @" + m.replyName + " "
 		}
-		return "Replying to " + m.replyName
+		return " Replying to @" + m.replyName + " "
 	}
-	return ""
+	if m.channel != nil && m.channel.Name != "" {
+		return " #" + m.channel.Name + " "
+	}
+	return " Compose "
 }
 
 // footer returns the names of the attached files, or "" if there are none.

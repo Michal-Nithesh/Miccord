@@ -202,6 +202,9 @@ type (
 	}
 
 	ThemeConfig struct {
+		// Theme mode: "dark" (Night Owl) or "light" (Night Owl Light).
+		Mode string `toml:"mode"`
+
 		Title  StyleThemeConfig `toml:"title"`
 		Footer StyleThemeConfig `toml:"footer"`
 		Border StyleThemeConfig `toml:"border"`
@@ -249,53 +252,189 @@ func (ctt TreeThemeConfig) StatusStyle(status discord.Status) tview.Style {
 	}
 }
 
-func defaultTheme() ThemeConfig {
+// NightOwlTheme returns the dark Night Owl color theme.
+func NightOwlTheme() ThemeConfig {
 	var (
 		plain  = tcell.StyleDefault
-		dim    = StyleWrapper{plain.Dim(true)}
 		bold   = plain.Bold(true)
 		italic = plain.Italic(true)
-		blue   = plain.Foreground(color.Blue)
-		focus  = StyleThemeConfig{dim, StyleWrapper{bold.Foreground(color.Green)}}
-		tree   = TreeThemeConfig{
-			GraphicsColor: "default",
-			OnlineStyle:   StyleWrapper{plain.Foreground(color.Green)},
-			IdleStyle:     StyleWrapper{plain.Foreground(color.Yellow)},
-			DNDStyle:      StyleWrapper{plain.Foreground(color.Red)},
-			OfflineStyle:  StyleWrapper{plain.Foreground(color.Gray)},
+
+		fg       = color.GetColor("#d6deeb")
+		cyan     = color.GetColor("#7fdbca")
+		blue     = color.GetColor("#82aaff")
+		green    = color.GetColor("#addb67")
+		yellow   = color.GetColor("#ecc48d")
+		red      = color.GetColor("#ef5350")
+		purple   = color.GetColor("#c792ea")
+		muted    = color.GetColor("#5f7e97")
+		border   = color.GetColor("#1d3b53")
+		dialogBg = color.GetColor("#0b2942")
+
+		focus = StyleThemeConfig{
+			NormalStyle: StyleWrapper{plain.Foreground(border)},
+			ActiveStyle: StyleWrapper{bold.Foreground(cyan)},
+		}
+		title = StyleThemeConfig{
+			NormalStyle: StyleWrapper{plain.Foreground(blue)},
+			ActiveStyle: StyleWrapper{bold.Foreground(cyan)},
+		}
+		footer = StyleThemeConfig{
+			NormalStyle: StyleWrapper{plain.Foreground(muted)},
+			ActiveStyle: StyleWrapper{bold.Foreground(cyan)},
+		}
+		tree = TreeThemeConfig{
+			GraphicsColor: "#1d3b53",
+			OnlineStyle:   StyleWrapper{plain.Foreground(green)},
+			IdleStyle:     StyleWrapper{plain.Foreground(yellow)},
+			DNDStyle:      StyleWrapper{plain.Foreground(red)},
+			OfflineStyle:  StyleWrapper{plain.Foreground(color.GetColor("#637777"))},
 		}
 	)
+
 	return ThemeConfig{
-		Title:  focus,
-		Footer: focus,
+		Mode:   "dark",
+		Title:  title,
+		Footer: footer,
 		Border: focus,
 		GuildsTree: GuildsTreeThemeConfig{
 			TreeThemeConfig: tree,
-			SpeakingStyle:   StyleWrapper{plain.Foreground(color.Green)},
-			VoiceLimitStyle: StyleWrapper{plain.Foreground(color.DodgerBlue)},
+			SpeakingStyle:   StyleWrapper{bold.Foreground(green)},
+			VoiceLimitStyle: StyleWrapper{plain.Foreground(blue)},
 		},
 		MembersTree: tree,
-		ScrollBar:   ScrollBarThemeConfig{TrackStyle: dim},
+		ScrollBar: ScrollBarThemeConfig{
+			TrackStyle: StyleWrapper{plain.Foreground(color.GetColor("#0b2942"))},
+			ThumbStyle: StyleWrapper{plain.Foreground(cyan)},
+		},
 		MessagesList: MessagesListThemeConfig{
-			MentionStyle:         StyleWrapper{blue.Bold(true)},
-			EmojiStyle:           StyleWrapper{plain.Foreground(color.Green)},
-			URLStyle:             StyleWrapper{blue},
-			AttachmentStyle:      StyleWrapper{plain.Foreground(color.Yellow)},
-			ReactionStyle:        dim,
-			OwnReactionStyle:     StyleWrapper{bold.Foreground(color.Green)},
-			SelectedMessageStyle: StyleWrapper{plain.Reverse(true)},
+			AuthorStyle:          StyleWrapper{bold.Foreground(blue)},
+			MentionStyle:         StyleWrapper{bold.Foreground(yellow)},
+			EmojiStyle:           StyleWrapper{plain.Foreground(green)},
+			URLStyle:             StyleWrapper{plain.Foreground(blue).Underline(true)},
+			AttachmentStyle:      StyleWrapper{plain.Foreground(green)},
+			ReactionStyle:        StyleWrapper{plain.Foreground(muted)},
+			OwnReactionStyle:     StyleWrapper{bold.Foreground(cyan)},
+			MessageStyle:         StyleWrapper{plain.Foreground(fg)},
+			SelectedMessageStyle: StyleWrapper{plain.Foreground(color.GetColor("#ffffff")).Background(border)},
 			Embeds: MessagesListEmbedsThemeConfig{
-				ProviderStyle:    StyleWrapper{italic.Dim(true)},
-				AuthorStyle:      StyleWrapper{italic},
-				TitleStyle:       StyleWrapper{blue.Bold(true)},
-				DescriptionStyle: dim,
-				FieldNameStyle:   StyleWrapper{bold.Underline(true)},
-				FooterStyle:      StyleWrapper{italic.Dim(true)},
-				URLStyle:         StyleWrapper{blue.Underline(true)},
+				ProviderStyle:    StyleWrapper{italic.Foreground(muted)},
+				AuthorStyle:      StyleWrapper{italic.Foreground(purple)},
+				TitleStyle:       StyleWrapper{bold.Foreground(blue)},
+				DescriptionStyle: StyleWrapper{plain.Foreground(fg)},
+				FieldNameStyle:   StyleWrapper{bold.Foreground(cyan).Underline(true)},
+				FieldValueStyle:  StyleWrapper{plain.Foreground(fg)},
+				FooterStyle:      StyleWrapper{italic.Foreground(muted)},
+				URLStyle:         StyleWrapper{plain.Foreground(blue).Underline(true)},
 			},
 		},
-		MentionsList: MentionsListThemeConfig{SelectedStyle: StyleWrapper{plain.Reverse(true)}},
-		Dialog:       DialogThemeConfig{BackgroundStyle: dim},
-		Help:         HelpThemeConfig{ShortKeyStyle: StyleWrapper{plain.Foreground(color.Green)}, FullKeyStyle: StyleWrapper{bold.Foreground(color.Green)}},
+		MentionsList: MentionsListThemeConfig{
+			SelectedStyle: StyleWrapper{bold.Foreground(cyan).Background(border)},
+		},
+		Dialog: DialogThemeConfig{
+			Style:           StyleWrapper{plain.Foreground(fg).Background(dialogBg)},
+			BackgroundStyle: StyleWrapper{plain.Dim(true).Background(color.GetColor("#01111d"))},
+		},
+		Help: HelpThemeConfig{
+			ShortKeyStyle:  StyleWrapper{bold.Foreground(cyan)},
+			ShortDescStyle: StyleWrapper{plain.Foreground(muted)},
+			FullKeyStyle:   StyleWrapper{bold.Foreground(blue)},
+			FullDescStyle:  StyleWrapper{plain.Foreground(fg)},
+		},
 	}
+}
+
+// LightOwlTheme returns the light color theme (Night Owl Light).
+func LightOwlTheme() ThemeConfig {
+	var (
+		plain  = tcell.StyleDefault
+		bold   = plain.Bold(true)
+		italic = plain.Italic(true)
+
+		fg       = color.GetColor("#403f53")
+		teal     = color.GetColor("#0c969b")
+		blue     = color.GetColor("#4876d6")
+		green    = color.GetColor("#2aa298")
+		amber    = color.GetColor("#c96b00")
+		red      = color.GetColor("#e05666")
+		purple   = color.GetColor("#9042f5")
+		muted    = color.GetColor("#7e8a99")
+		border   = color.GetColor("#d3d8df")
+		selBg    = color.GetColor("#d6deeb")
+		dialogBg = color.GetColor("#f0f0f0")
+
+		focus = StyleThemeConfig{
+			NormalStyle: StyleWrapper{plain.Foreground(border)},
+			ActiveStyle: StyleWrapper{bold.Foreground(teal)},
+		}
+		title = StyleThemeConfig{
+			NormalStyle: StyleWrapper{plain.Foreground(blue)},
+			ActiveStyle: StyleWrapper{bold.Foreground(teal)},
+		}
+		footer = StyleThemeConfig{
+			NormalStyle: StyleWrapper{plain.Foreground(muted)},
+			ActiveStyle: StyleWrapper{bold.Foreground(teal)},
+		}
+		tree = TreeThemeConfig{
+			GraphicsColor: "#d3d8df",
+			OnlineStyle:   StyleWrapper{plain.Foreground(green)},
+			IdleStyle:     StyleWrapper{plain.Foreground(amber)},
+			DNDStyle:      StyleWrapper{plain.Foreground(red)},
+			OfflineStyle:  StyleWrapper{plain.Foreground(color.GetColor("#90a4ae"))},
+		}
+	)
+
+	return ThemeConfig{
+		Mode:   "light",
+		Title:  title,
+		Footer: footer,
+		Border: focus,
+		GuildsTree: GuildsTreeThemeConfig{
+			TreeThemeConfig: tree,
+			SpeakingStyle:   StyleWrapper{bold.Foreground(green)},
+			VoiceLimitStyle: StyleWrapper{plain.Foreground(blue)},
+		},
+		MembersTree: tree,
+		ScrollBar: ScrollBarThemeConfig{
+			TrackStyle: StyleWrapper{plain.Foreground(color.GetColor("#e0e5eb"))},
+			ThumbStyle: StyleWrapper{plain.Foreground(teal)},
+		},
+		MessagesList: MessagesListThemeConfig{
+			AuthorStyle:          StyleWrapper{bold.Foreground(blue)},
+			MentionStyle:         StyleWrapper{bold.Foreground(amber)},
+			EmojiStyle:           StyleWrapper{plain.Foreground(green)},
+			URLStyle:             StyleWrapper{plain.Foreground(blue).Underline(true)},
+			AttachmentStyle:      StyleWrapper{plain.Foreground(color.GetColor("#498205"))},
+			ReactionStyle:        StyleWrapper{plain.Foreground(muted)},
+			OwnReactionStyle:     StyleWrapper{bold.Foreground(teal)},
+			MessageStyle:         StyleWrapper{plain.Foreground(fg)},
+			SelectedMessageStyle: StyleWrapper{plain.Foreground(color.GetColor("#011627")).Background(selBg)},
+			Embeds: MessagesListEmbedsThemeConfig{
+				ProviderStyle:    StyleWrapper{italic.Foreground(muted)},
+				AuthorStyle:      StyleWrapper{italic.Foreground(purple)},
+				TitleStyle:       StyleWrapper{bold.Foreground(blue)},
+				DescriptionStyle: StyleWrapper{plain.Foreground(fg)},
+				FieldNameStyle:   StyleWrapper{bold.Foreground(teal).Underline(true)},
+				FieldValueStyle:  StyleWrapper{plain.Foreground(fg)},
+				FooterStyle:      StyleWrapper{italic.Foreground(muted)},
+				URLStyle:         StyleWrapper{plain.Foreground(blue).Underline(true)},
+			},
+		},
+		MentionsList: MentionsListThemeConfig{
+			SelectedStyle: StyleWrapper{bold.Foreground(teal).Background(selBg)},
+		},
+		Dialog: DialogThemeConfig{
+			Style:           StyleWrapper{plain.Foreground(fg).Background(dialogBg)},
+			BackgroundStyle: StyleWrapper{plain.Background(color.GetColor("#ffffff")).Dim(true)},
+		},
+		Help: HelpThemeConfig{
+			ShortKeyStyle:  StyleWrapper{bold.Foreground(teal)},
+			ShortDescStyle: StyleWrapper{plain.Foreground(muted)},
+			FullKeyStyle:   StyleWrapper{bold.Foreground(blue)},
+			FullDescStyle:  StyleWrapper{plain.Foreground(fg)},
+		},
+	}
+}
+
+func defaultTheme() ThemeConfig {
+	return NightOwlTheme()
 }

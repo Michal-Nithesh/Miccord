@@ -548,6 +548,12 @@ Switch between compact and full keybind help.
 
 Default: `"ctrl+."`
 
+## keybinds.toggle_theme
+
+Toggle between dark (Night Owl) and light themes.
+
+Default: `"alt+t"`
+
 ## keybinds.suspend
 
 Default: `"ctrl+z"`
@@ -976,41 +982,47 @@ Default: `"ctrl+c"`
 Styles of the widgets, each written as
 `{ foreground = "", background = "", attributes = "" or ["", ""], underline = "", underline_color = "" }`.
 
+## theme.mode
+
+Theme mode: "dark" (Night Owl) or "light" (Night Owl Light).
+
+Default: `"dark"`
+
 ## theme.title
 
 ### theme.title.normal_style
 
-Default: `{ attributes = "dim" }`
+Default: `{ foreground = "#82AAFF" }`
 
 ### theme.title.active_style
 
 The style used while the widget is focused.
 
-Default: `{ foreground = "green", attributes = "bold" }`
+Default: `{ foreground = "#7FDBCA", attributes = "bold" }`
 
 ## theme.footer
 
 ### theme.footer.normal_style
 
-Default: `{ attributes = "dim" }`
+Default: `{ foreground = "#5F7E97" }`
 
 ### theme.footer.active_style
 
 The style used while the widget is focused.
 
-Default: `{ foreground = "green", attributes = "bold" }`
+Default: `{ foreground = "#7FDBCA", attributes = "bold" }`
 
 ## theme.border
 
 ### theme.border.normal_style
 
-Default: `{ attributes = "dim" }`
+Default: `{ foreground = "#1D3B53" }`
 
 ### theme.border.active_style
 
 The style used while the widget is focused.
 
-Default: `{ foreground = "green", attributes = "bold" }`
+Default: `{ foreground = "#7FDBCA", attributes = "bold" }`
 
 ## theme.guilds_tree
 
@@ -1020,35 +1032,35 @@ The status styles are those of direct-message recipients.
 
 The color of the lines that give the tree its shape.
 
-Default: `"default"`
+Default: `"#1d3b53"`
 
 ### theme.guilds_tree.online_style
 
-Default: `{ foreground = "green" }`
+Default: `{ foreground = "#ADDB67" }`
 
 ### theme.guilds_tree.idle_style
 
-Default: `{ foreground = "yellow" }`
+Default: `{ foreground = "#ECC48D" }`
 
 ### theme.guilds_tree.dnd_style
 
-Default: `{ foreground = "red" }`
+Default: `{ foreground = "#EF5350" }`
 
 ### theme.guilds_tree.offline_style
 
-Default: `{ foreground = "gray" }`
+Default: `{ foreground = "#637777" }`
 
 ### theme.guilds_tree.speaking_style
 
 The style of whoever is speaking in the voice channel joined.
 
-Default: `{ foreground = "green" }`
+Default: `{ foreground = "#ADDB67", attributes = "bold" }`
 
 ### theme.guilds_tree.voice_limit_style
 
 The style of how full a voice channel that has a user limit is.
 
-Default: `{ foreground = "dodgerblue" }`
+Default: `{ foreground = "#82AAFF" }`
 
 ## theme.members_tree
 
@@ -1058,138 +1070,138 @@ The status styles are those of the dot before each member.
 
 The color of the lines that give the tree its shape.
 
-Default: `"default"`
+Default: `"#1d3b53"`
 
 ### theme.members_tree.online_style
 
-Default: `{ foreground = "green" }`
+Default: `{ foreground = "#ADDB67" }`
 
 ### theme.members_tree.idle_style
 
-Default: `{ foreground = "yellow" }`
+Default: `{ foreground = "#ECC48D" }`
 
 ### theme.members_tree.dnd_style
 
-Default: `{ foreground = "red" }`
+Default: `{ foreground = "#EF5350" }`
 
 ### theme.members_tree.offline_style
 
-Default: `{ foreground = "gray" }`
+Default: `{ foreground = "#637777" }`
 
 ## theme.scroll_bar
 
 ### theme.scroll_bar.track_style
 
-Default: `{ attributes = "dim" }`
+Default: `{ foreground = "#0B2942" }`
 
 ### theme.scroll_bar.thumb_style
 
-Default: `{}`
+Default: `{ foreground = "#7FDBCA" }`
 
 ## theme.messages_list
 
 ### theme.messages_list.author_style
 
-Default: `{}`
+Default: `{ foreground = "#82AAFF", attributes = "bold" }`
 
 ### theme.messages_list.mention_style
 
-Default: `{ foreground = "blue", attributes = "bold" }`
+Default: `{ foreground = "#ECC48D", attributes = "bold" }`
 
 ### theme.messages_list.emoji_style
 
-Default: `{ foreground = "green" }`
+Default: `{ foreground = "#ADDB67" }`
 
 ### theme.messages_list.url_style
 
-Default: `{ foreground = "blue" }`
+Default: `{ foreground = "#82AAFF", underline = "solid" }`
 
 ### theme.messages_list.attachment_style
 
-Default: `{ foreground = "yellow" }`
+Default: `{ foreground = "#ADDB67" }`
 
 ### theme.messages_list.reaction_style
 
-Default: `{ attributes = "dim" }`
+Default: `{ foreground = "#5F7E97" }`
 
 ### theme.messages_list.own_reaction_style
 
-Default: `{ foreground = "green", attributes = "bold" }`
+Default: `{ foreground = "#7FDBCA", attributes = "bold" }`
 
 ### theme.messages_list.message_style
 
-Default: `{}`
+Default: `{ foreground = "#D6DEEB" }`
 
 ### theme.messages_list.selected_message_style
 
-Default: `{ attributes = "reverse" }`
+Default: `{ foreground = "#FFFFFF", background = "#1D3B53" }`
 
 ### theme.messages_list.embeds
 
 #### theme.messages_list.embeds.provider_style
 
-Default: `{ attributes = ["dim","italic"] }`
+Default: `{ foreground = "#5F7E97", attributes = "italic" }`
 
 #### theme.messages_list.embeds.author_style
 
-Default: `{ attributes = "italic" }`
+Default: `{ foreground = "#C792EA", attributes = "italic" }`
 
 #### theme.messages_list.embeds.title_style
 
-Default: `{ foreground = "blue", attributes = "bold" }`
+Default: `{ foreground = "#82AAFF", attributes = "bold" }`
 
 #### theme.messages_list.embeds.description_style
 
-Default: `{ attributes = "dim" }`
+Default: `{ foreground = "#D6DEEB" }`
 
 #### theme.messages_list.embeds.field_name_style
 
-Default: `{ attributes = "bold", underline = "solid" }`
+Default: `{ foreground = "#7FDBCA", attributes = "bold", underline = "solid" }`
 
 #### theme.messages_list.embeds.field_value_style
 
-Default: `{}`
+Default: `{ foreground = "#D6DEEB" }`
 
 #### theme.messages_list.embeds.footer_style
 
-Default: `{ attributes = ["dim","italic"] }`
+Default: `{ foreground = "#5F7E97", attributes = "italic" }`
 
 #### theme.messages_list.embeds.url_style
 
-Default: `{ foreground = "blue", underline = "solid" }`
+Default: `{ foreground = "#82AAFF", underline = "solid" }`
 
 ## theme.mentions_list
 
 ### theme.mentions_list.selected_style
 
-Default: `{ attributes = "reverse" }`
+Default: `{ foreground = "#7FDBCA", background = "#1D3B53", attributes = "bold" }`
 
 ## theme.dialog
 
 ### theme.dialog.style
 
-Default: `{}`
+Default: `{ foreground = "#D6DEEB", background = "#0B2942" }`
 
 ### theme.dialog.background_style
 
 The style of everything behind the dialog.
 
-Default: `{ attributes = "dim" }`
+Default: `{ background = "#01111D", attributes = "dim" }`
 
 ## theme.help
 
 ### theme.help.short_key_style
 
-Default: `{ foreground = "green" }`
+Default: `{ foreground = "#7FDBCA", attributes = "bold" }`
 
 ### theme.help.short_desc_style
 
-Default: `{}`
+Default: `{ foreground = "#5F7E97" }`
 
 ### theme.help.full_key_style
 
-Default: `{ foreground = "green", attributes = "bold" }`
+Default: `{ foreground = "#82AAFF", attributes = "bold" }`
 
 ### theme.help.full_desc_style
 
-Default: `{}`
+Default: `{ foreground = "#D6DEEB" }`
