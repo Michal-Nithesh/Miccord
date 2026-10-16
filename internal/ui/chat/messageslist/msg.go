@@ -11,10 +11,10 @@ import (
 	"slices"
 	"time"
 
+	"github.com/Michal-Nithesh/MichalTerm/internal/consts"
+	"github.com/Michal-Nithesh/MichalTerm/internal/ui"
 	"github.com/ayn2op/arikawa/v3/discord"
 	"github.com/ayn2op/arikawa/v3/gateway"
-	"github.com/ayn2op/discordo/internal/consts"
-	"github.com/ayn2op/discordo/internal/ui"
 	"github.com/ayn2op/tview"
 	"github.com/ayn2op/tview/picker"
 	"github.com/ayn2op/tview/viewport"

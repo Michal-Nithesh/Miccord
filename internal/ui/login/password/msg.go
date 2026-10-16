@@ -3,8 +3,8 @@ package password
 import (
 	"errors"
 
+	"github.com/Michal-Nithesh/MichalTerm/internal/http"
 	"github.com/ayn2op/arikawa/v3/utils/httputil"
-	"github.com/ayn2op/discordo/internal/http"
 	"github.com/ayn2op/tview"
 )
 

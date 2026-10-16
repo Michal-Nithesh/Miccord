@@ -5,8 +5,8 @@ import (
 	"testing"
 	"uuid"
 
+	"github.com/Michal-Nithesh/MichalTerm/internal/tls"
 	"github.com/ayn2op/arikawa/v3/gateway"
-	"github.com/ayn2op/discordo/internal/tls"
 )
 
 func TestCommonProperties(t *testing.T) {

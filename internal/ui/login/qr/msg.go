@@ -14,9 +14,9 @@ import (
 	"sync"
 	"time"
 
+	"github.com/Michal-Nithesh/MichalTerm/internal/gateway"
+	"github.com/Michal-Nithesh/MichalTerm/internal/http"
 	"github.com/ayn2op/arikawa/v3/utils/httputil"
-	"github.com/ayn2op/discordo/internal/gateway"
-	"github.com/ayn2op/discordo/internal/http"
 	"github.com/ayn2op/tview"
 	"github.com/ayn2op/tview/viewport"
 	"github.com/gorilla/websocket"

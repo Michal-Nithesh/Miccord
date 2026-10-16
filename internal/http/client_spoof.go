@@ -9,10 +9,10 @@ import (
 	"net/http"
 	"net/url"
 
+	"github.com/Michal-Nithesh/MichalTerm/internal/tls"
 	"github.com/ayn2op/arikawa/v3/api"
 	"github.com/ayn2op/arikawa/v3/utils/httputil"
 	"github.com/ayn2op/arikawa/v3/utils/httputil/httpdriver"
-	"github.com/ayn2op/discordo/internal/tls"
 	fhttp "github.com/bogdanfinn/fhttp"
 	tls_client "github.com/bogdanfinn/tls-client"
 )

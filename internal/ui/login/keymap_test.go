@@ -5,7 +5,7 @@ import (
 	"slices"
 	"testing"
 
-	"github.com/ayn2op/discordo/internal/config"
+	"github.com/Michal-Nithesh/MichalTerm/internal/config"
 	"github.com/ayn2op/tview/keybind"
 )
 

@@ -3,10 +3,10 @@ package channelspicker
 import (
 	"log/slog"
 
+	"github.com/Michal-Nithesh/MichalTerm/internal/config"
+	"github.com/Michal-Nithesh/MichalTerm/internal/ui"
+	uipicker "github.com/Michal-Nithesh/MichalTerm/internal/ui/picker"
 	"github.com/ayn2op/arikawa/v3/discord"
-	"github.com/ayn2op/discordo/internal/config"
-	"github.com/ayn2op/discordo/internal/ui"
-	uipicker "github.com/ayn2op/discordo/internal/ui/picker"
 	"github.com/ayn2op/ningen/v3"
 	"github.com/ayn2op/tview"
 	"github.com/ayn2op/tview/picker"

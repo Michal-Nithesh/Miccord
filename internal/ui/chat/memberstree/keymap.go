@@ -1,7 +1,7 @@
 package memberstree
 
 import (
-	uitree "github.com/ayn2op/discordo/internal/ui/tree"
+	uitree "github.com/Michal-Nithesh/MichalTerm/internal/ui/tree"
 	"github.com/ayn2op/tview/help"
 	"github.com/ayn2op/tview/keybind"
 )

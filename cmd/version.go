@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"runtime/debug"
 
-	"github.com/ayn2op/discordo/internal/consts"
+	"github.com/Michal-Nithesh/MichalTerm/internal/consts"
 )
 
 func buildVersion() string {

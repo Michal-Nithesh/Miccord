@@ -5,11 +5,11 @@ import (
 	"fmt"
 	"log/slog"
 
+	"github.com/Michal-Nithesh/MichalTerm/internal/config"
+	"github.com/Michal-Nithesh/MichalTerm/internal/consts"
+	"github.com/Michal-Nithesh/MichalTerm/internal/logger"
+	"github.com/Michal-Nithesh/MichalTerm/internal/ui/root"
 	"github.com/ayn2op/arikawa/v3/utils/ws"
-	"github.com/ayn2op/discordo/internal/config"
-	"github.com/ayn2op/discordo/internal/consts"
-	"github.com/ayn2op/discordo/internal/logger"
-	"github.com/ayn2op/discordo/internal/ui/root"
 	"github.com/ayn2op/tview"
 	"github.com/gdamore/tcell/v3"
 )

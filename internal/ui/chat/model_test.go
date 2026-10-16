@@ -5,9 +5,9 @@ import (
 	"testing"
 	"time"
 
+	"github.com/Michal-Nithesh/MichalTerm/internal/config"
 	"github.com/ayn2op/arikawa/v3/discord"
 	"github.com/ayn2op/arikawa/v3/gateway"
-	"github.com/ayn2op/discordo/internal/config"
 	"github.com/ayn2op/tview"
 	"github.com/gdamore/tcell/v3"
 )

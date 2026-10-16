@@ -3,9 +3,9 @@ package root
 import (
 	"log/slog"
 
-	"github.com/ayn2op/discordo/internal/consts"
-	"github.com/ayn2op/discordo/internal/ui/chat"
-	"github.com/ayn2op/discordo/internal/ui/login"
+	"github.com/Michal-Nithesh/MichalTerm/internal/consts"
+	"github.com/Michal-Nithesh/MichalTerm/internal/ui/chat"
+	"github.com/Michal-Nithesh/MichalTerm/internal/ui/login"
 	"github.com/ayn2op/tview"
 	"github.com/zalando/go-keyring"
 	"golang.design/x/clipboard"

@@ -4,7 +4,7 @@ import (
 	"context"
 	"log/slog"
 
-	"github.com/ayn2op/discordo/internal/ui"
+	"github.com/Michal-Nithesh/MichalTerm/internal/ui"
 	"github.com/ayn2op/tview"
 	"golang.design/x/clipboard"
 )

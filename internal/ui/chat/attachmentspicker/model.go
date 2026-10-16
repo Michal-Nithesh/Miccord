@@ -1,8 +1,8 @@
 package attachmentspicker
 
 import (
-	"github.com/ayn2op/discordo/internal/config"
-	uipicker "github.com/ayn2op/discordo/internal/ui/picker"
+	"github.com/Michal-Nithesh/MichalTerm/internal/config"
+	uipicker "github.com/Michal-Nithesh/MichalTerm/internal/ui/picker"
 	"github.com/ayn2op/tview"
 	"github.com/ayn2op/tview/picker"
 )

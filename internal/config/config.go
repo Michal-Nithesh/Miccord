@@ -11,8 +11,8 @@ import (
 	"unicode/utf8"
 
 	"github.com/BurntSushi/toml"
+	"github.com/Michal-Nithesh/MichalTerm/internal/consts"
 	"github.com/ayn2op/arikawa/v3/discord"
-	"github.com/ayn2op/discordo/internal/consts"
 )
 
 const fileName = "config.toml"

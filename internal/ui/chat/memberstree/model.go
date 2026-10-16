@@ -6,11 +6,11 @@ import (
 	"slices"
 	"strings"
 
+	"github.com/Michal-Nithesh/MichalTerm/internal/config"
+	uitree "github.com/Michal-Nithesh/MichalTerm/internal/ui/tree"
 	"github.com/ayn2op/arikawa/v3/discord"
 	"github.com/ayn2op/arikawa/v3/gateway"
 	"github.com/ayn2op/arikawa/v3/state"
-	"github.com/ayn2op/discordo/internal/config"
-	uitree "github.com/ayn2op/discordo/internal/ui/tree"
 	"github.com/ayn2op/ningen/v3"
 	"github.com/ayn2op/tview"
 	"github.com/ayn2op/tview/keybind"

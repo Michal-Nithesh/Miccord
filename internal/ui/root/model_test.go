@@ -4,7 +4,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/ayn2op/discordo/internal/config"
+	"github.com/Michal-Nithesh/MichalTerm/internal/config"
 	"github.com/gdamore/tcell/v3"
 )
 

@@ -3,11 +3,11 @@ package chat
 import (
 	"log/slog"
 
+	"github.com/Michal-Nithesh/MichalTerm/internal/ui"
 	"github.com/ayn2op/arikawa/v3/discord"
 	"github.com/ayn2op/arikawa/v3/gateway"
 	"github.com/ayn2op/arikawa/v3/utils/httputil/httpdriver"
 	"github.com/ayn2op/arikawa/v3/utils/ws"
-	"github.com/ayn2op/discordo/internal/ui"
 	"github.com/ayn2op/ningen/v3/states/read"
 	"github.com/ayn2op/tview"
 )
