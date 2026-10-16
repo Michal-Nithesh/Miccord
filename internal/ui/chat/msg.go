@@ -6,9 +6,9 @@ import (
 	"log/slog"
 	"time"
 
-	"github.com/Michal-Nithesh/MichalTerm/internal/ui"
-	"github.com/Michal-Nithesh/MichalTerm/internal/ui/chat/composer"
-	"github.com/Michal-Nithesh/MichalTerm/internal/ui/chat/guildstree"
+	"github.com/Michal-Nithesh/miccord/internal/ui"
+	"github.com/Michal-Nithesh/miccord/internal/ui/chat/composer"
+	"github.com/Michal-Nithesh/miccord/internal/ui/chat/guildstree"
 	"github.com/ayn2op/arikawa/v3/discord"
 	"github.com/ayn2op/arikawa/v3/gateway"
 	"github.com/ayn2op/arikawa/v3/utils/ws"

@@ -1,9 +1,9 @@
-// Package picker holds what MichalTerm's pickers share.
+// Package picker holds what Miccord's pickers share.
 package picker
 
 import (
-	"github.com/Michal-Nithesh/MichalTerm/internal/config"
-	"github.com/Michal-Nithesh/MichalTerm/internal/ui"
+	"github.com/Michal-Nithesh/miccord/internal/config"
+	"github.com/Michal-Nithesh/miccord/internal/ui"
 	"github.com/ayn2op/tview"
 	"github.com/ayn2op/tview/keybind"
 	"github.com/ayn2op/tview/picker"

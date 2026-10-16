@@ -5,7 +5,7 @@ import (
 	"slices"
 	"testing"
 
-	"github.com/Michal-Nithesh/MichalTerm/internal/config"
+	"github.com/Michal-Nithesh/miccord/internal/config"
 	"github.com/ayn2op/tview/keybind"
 )
 

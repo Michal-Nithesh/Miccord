@@ -8,7 +8,7 @@ import (
 
 	"github.com/BurntSushi/toml"
 
-	"github.com/Michal-Nithesh/MichalTerm/internal/consts"
+	"github.com/Michal-Nithesh/miccord/internal/consts"
 )
 
 func TestDefaultPath(t *testing.T) {
@@ -91,26 +91,29 @@ func TestLoad(t *testing.T) {
 	})
 
 	t.Run("fallback to legacy config when default is missing", func(t *testing.T) {
-		tempDir := t.TempDir()
-		t.Setenv("XDG_CONFIG_HOME", tempDir)
-		t.Setenv("HOME", tempDir)
-		t.Setenv("AppData", tempDir)
+		for _, legacyName := range []string{consts.LegacyMichalTerm, consts.LegacyDiscordo} {
+			t.Run(legacyName, func(t *testing.T) {
+				tempDir := t.TempDir()
+				t.Setenv("XDG_CONFIG_HOME", tempDir)
+				t.Setenv("HOME", tempDir)
+				t.Setenv("AppData", tempDir)
 
-		legacyDefault := legacyDefaultPath()
-		legacyDir := filepath.Dir(legacyDefault)
-		if err := os.MkdirAll(legacyDir, os.ModePerm); err != nil {
-			t.Fatal(err)
-		}
-		if err := os.WriteFile(legacyDefault, []byte("mouse = false"), os.ModePerm); err != nil {
-			t.Fatal(err)
-		}
+				legacyDir := filepath.Join(tempDir, legacyName)
+				if err := os.MkdirAll(legacyDir, os.ModePerm); err != nil {
+					t.Fatal(err)
+				}
+				if err := os.WriteFile(filepath.Join(legacyDir, fileName), []byte("mouse = false"), os.ModePerm); err != nil {
+					t.Fatal(err)
+				}
 
-		cfg, err := Load(DefaultPath())
-		if err != nil {
-			t.Fatal(err)
-		}
-		if cfg.Mouse != false {
-			t.Fatalf("expected legacy config mouse = false, got %v", cfg.Mouse)
+				cfg, err := Load(DefaultPath())
+				if err != nil {
+					t.Fatal(err)
+				}
+				if cfg.Mouse != false {
+					t.Fatalf("expected legacy %s config mouse = false, got %v", legacyName, cfg.Mouse)
+				}
+			})
 		}
 	})
 }

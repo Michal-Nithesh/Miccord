@@ -3,7 +3,7 @@
 package gateway
 
 import (
-	"github.com/Michal-Nithesh/MichalTerm/internal/tls"
+	"github.com/Michal-Nithesh/miccord/internal/tls"
 	tls_client "github.com/bogdanfinn/tls-client"
 	"github.com/gorilla/websocket"
 )

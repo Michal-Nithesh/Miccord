@@ -4,7 +4,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/Michal-Nithesh/MichalTerm/cmd"
+	"github.com/Michal-Nithesh/miccord/cmd"
 )
 
 func main() {

@@ -3,7 +3,7 @@ package chat
 import (
 	"log/slog"
 
-	"github.com/Michal-Nithesh/MichalTerm/internal/ui"
+	"github.com/Michal-Nithesh/miccord/internal/ui"
 	"github.com/ayn2op/arikawa/v3/discord"
 	"github.com/ayn2op/arikawa/v3/gateway"
 	"github.com/ayn2op/arikawa/v3/utils/httputil/httpdriver"

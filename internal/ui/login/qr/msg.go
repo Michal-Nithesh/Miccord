@@ -14,8 +14,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/Michal-Nithesh/MichalTerm/internal/gateway"
-	"github.com/Michal-Nithesh/MichalTerm/internal/http"
+	"github.com/Michal-Nithesh/miccord/internal/gateway"
+	"github.com/Michal-Nithesh/miccord/internal/http"
 	"github.com/ayn2op/arikawa/v3/utils/httputil"
 	"github.com/ayn2op/tview"
 	"github.com/ayn2op/tview/viewport"

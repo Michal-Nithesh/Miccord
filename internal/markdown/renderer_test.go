@@ -4,7 +4,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/Michal-Nithesh/MichalTerm/internal/config"
+	"github.com/Michal-Nithesh/miccord/internal/config"
 	md "github.com/ayn2op/arikawa/v3/markdown"
 	"github.com/gdamore/tcell/v3"
 )

@@ -11,7 +11,7 @@ import (
 	"unicode/utf8"
 
 	"github.com/BurntSushi/toml"
-	"github.com/Michal-Nithesh/MichalTerm/internal/consts"
+	"github.com/Michal-Nithesh/miccord/internal/consts"
 	"github.com/ayn2op/arikawa/v3/discord"
 )
 
@@ -280,12 +280,15 @@ func DefaultPath() string {
 	return filepath.Join(dir(), fileName)
 }
 
-func legacyDefaultPath() string {
+func legacyDefaultPaths() []string {
 	path, err := os.UserConfigDir()
 	if err != nil {
 		path = "."
 	}
-	return filepath.Join(path, consts.LegacyName, fileName)
+	return []string{
+		filepath.Join(path, consts.LegacyMichalTerm, fileName),
+		filepath.Join(path, consts.LegacyDiscordo, fileName),
+	}
 }
 
 // Load reads the configuration file and parses it.
@@ -295,15 +298,16 @@ func Load(path string) (*Config, error) {
 	switch {
 	case os.IsNotExist(err):
 		if path == DefaultPath() {
-			legacyPath := legacyDefaultPath()
-			if legacyFile, legacyErr := os.Open(legacyPath); legacyErr == nil {
-				defer legacyFile.Close() //nolint:errcheck
-				slog.Info("config file does not exist at default path; falling back to legacy config", "legacyPath", legacyPath)
-				if _, err := toml.NewDecoder(legacyFile).Decode(&cfg); err != nil {
-					return nil, fmt.Errorf("failed to decode legacy config: %w", err)
+			for _, legacyPath := range legacyDefaultPaths() {
+				if legacyFile, legacyErr := os.Open(legacyPath); legacyErr == nil {
+					defer legacyFile.Close() //nolint:errcheck
+					slog.Info("config file does not exist at default path; falling back to legacy config", "legacyPath", legacyPath)
+					if _, err := toml.NewDecoder(legacyFile).Decode(&cfg); err != nil {
+						return nil, fmt.Errorf("failed to decode legacy config: %w", err)
+					}
+					cfg.applyDefaults()
+					return &cfg, nil
 				}
-				cfg.applyDefaults()
-				return &cfg, nil
 			}
 		}
 		slog.Info("config file does not exist, falling back to the default config", "path", path, "err", err)

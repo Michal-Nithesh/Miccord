@@ -1,7 +1,7 @@
 package messageslist
 
 import (
-	"github.com/Michal-Nithesh/MichalTerm/internal/ui"
+	"github.com/Michal-Nithesh/miccord/internal/ui"
 	"github.com/ayn2op/tview/help"
 	"github.com/ayn2op/tview/keybind"
 )

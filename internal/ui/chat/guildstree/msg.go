@@ -3,7 +3,7 @@ package guildstree
 import (
 	"log/slog"
 
-	"github.com/Michal-Nithesh/MichalTerm/internal/ui"
+	"github.com/Michal-Nithesh/miccord/internal/ui"
 	"github.com/ayn2op/arikawa/v3/discord"
 	"github.com/ayn2op/ningen/v3"
 	"github.com/ayn2op/tview"

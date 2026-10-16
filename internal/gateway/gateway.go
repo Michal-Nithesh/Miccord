@@ -1,7 +1,7 @@
 package gateway
 
 import (
-	"github.com/Michal-Nithesh/MichalTerm/internal/http"
+	"github.com/Michal-Nithesh/miccord/internal/http"
 	"github.com/ayn2op/arikawa/v3/api"
 	discordgateway "github.com/ayn2op/arikawa/v3/gateway"
 	"github.com/ayn2op/arikawa/v3/utils/ws"

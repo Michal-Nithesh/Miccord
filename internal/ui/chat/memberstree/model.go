@@ -6,8 +6,8 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/Michal-Nithesh/MichalTerm/internal/config"
-	uitree "github.com/Michal-Nithesh/MichalTerm/internal/ui/tree"
+	"github.com/Michal-Nithesh/miccord/internal/config"
+	uitree "github.com/Michal-Nithesh/miccord/internal/ui/tree"
 	"github.com/ayn2op/arikawa/v3/discord"
 	"github.com/ayn2op/arikawa/v3/gateway"
 	"github.com/ayn2op/arikawa/v3/state"

@@ -1,4 +1,4 @@
-module github.com/Michal-Nithesh/MichalTerm
+module github.com/Michal-Nithesh/miccord
 
 go 1.27.0
 

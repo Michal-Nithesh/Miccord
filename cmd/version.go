@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"runtime/debug"
 
-	"github.com/Michal-Nithesh/MichalTerm/internal/consts"
+	"github.com/Michal-Nithesh/miccord/internal/consts"
 )
 
 func buildVersion() string {

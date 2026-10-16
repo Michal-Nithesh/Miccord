@@ -16,10 +16,10 @@ import (
 
 	"github.com/ayn2op/tview/layout"
 
-	"github.com/Michal-Nithesh/MichalTerm/internal/config"
-	"github.com/Michal-Nithesh/MichalTerm/internal/markdown"
-	"github.com/Michal-Nithesh/MichalTerm/internal/ui"
-	"github.com/Michal-Nithesh/MichalTerm/internal/voice"
+	"github.com/Michal-Nithesh/miccord/internal/config"
+	"github.com/Michal-Nithesh/miccord/internal/markdown"
+	"github.com/Michal-Nithesh/miccord/internal/ui"
+	"github.com/Michal-Nithesh/miccord/internal/voice"
 	"github.com/ayn2op/arikawa/v3/api"
 	"github.com/ayn2op/arikawa/v3/discord"
 	md "github.com/ayn2op/arikawa/v3/markdown"

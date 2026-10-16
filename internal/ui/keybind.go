@@ -1,7 +1,7 @@
 package ui
 
 import (
-	"github.com/Michal-Nithesh/MichalTerm/internal/config"
+	"github.com/Michal-Nithesh/miccord/internal/config"
 	"github.com/ayn2op/tview"
 	"github.com/ayn2op/tview/keybind"
 	"github.com/ayn2op/tview/list"

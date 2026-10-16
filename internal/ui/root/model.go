@@ -4,14 +4,14 @@ import (
 	"github.com/ayn2op/tview/layout"
 	"os"
 
-	"github.com/Michal-Nithesh/MichalTerm/internal/config"
-	"github.com/Michal-Nithesh/MichalTerm/internal/consts"
-	"github.com/Michal-Nithesh/MichalTerm/internal/ui"
-	"github.com/Michal-Nithesh/MichalTerm/internal/ui/chat"
-	"github.com/Michal-Nithesh/MichalTerm/internal/ui/login"
-	"github.com/Michal-Nithesh/MichalTerm/internal/ui/login/password"
-	"github.com/Michal-Nithesh/MichalTerm/internal/ui/login/qr"
-	"github.com/Michal-Nithesh/MichalTerm/internal/ui/login/token"
+	"github.com/Michal-Nithesh/miccord/internal/config"
+	"github.com/Michal-Nithesh/miccord/internal/consts"
+	"github.com/Michal-Nithesh/miccord/internal/ui"
+	"github.com/Michal-Nithesh/miccord/internal/ui/chat"
+	"github.com/Michal-Nithesh/miccord/internal/ui/login"
+	"github.com/Michal-Nithesh/miccord/internal/ui/login/password"
+	"github.com/Michal-Nithesh/miccord/internal/ui/login/qr"
+	"github.com/Michal-Nithesh/miccord/internal/ui/login/token"
 	"github.com/ayn2op/tview"
 	"github.com/ayn2op/tview/backdrop"
 	"github.com/ayn2op/tview/box"
@@ -25,8 +25,9 @@ import (
 )
 
 const (
-	tokenEnvVarKey       = "MICHALTERM_TOKEN"
-	legacyTokenEnvVarKey = "DISCORDO_TOKEN"
+	tokenEnvVarKey         = "MICCORD_TOKEN"
+	legacyMichalTermEnvKey = "MICHALTERM_TOKEN"
+	legacyDiscordoEnvKey   = "DISCORDO_TOKEN"
 )
 
 // screen is what is shown above help.
@@ -64,7 +65,10 @@ func (m Model) Init() tview.Cmd {
 	var cmd tview.Cmd
 	token := os.Getenv(tokenEnvVarKey)
 	if token == "" {
-		token = os.Getenv(legacyTokenEnvVarKey)
+		token = os.Getenv(legacyMichalTermEnvKey)
+	}
+	if token == "" {
+		token = os.Getenv(legacyDiscordoEnvKey)
 	}
 	if token != "" {
 		cmd = useToken(token)

@@ -8,10 +8,11 @@ import (
 )
 
 const (
-	Name        = "michalterm"
-	DisplayName = "MichalTerm"
-	Tagline     = "Your conversations. Your terminal."
-	LegacyName  = "discordo"
+	Name             = "miccord"
+	DisplayName      = "Miccord"
+	Tagline          = "Your conversations. Your terminal."
+	LegacyMichalTerm = "michalterm"
+	LegacyDiscordo   = "discordo"
 )
 
 // CacheDir returns the cache directory, creating it on first use.

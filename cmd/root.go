@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"log/slog"
 
-	"github.com/Michal-Nithesh/MichalTerm/internal/config"
-	"github.com/Michal-Nithesh/MichalTerm/internal/consts"
-	"github.com/Michal-Nithesh/MichalTerm/internal/logger"
-	"github.com/Michal-Nithesh/MichalTerm/internal/ui/root"
+	"github.com/Michal-Nithesh/miccord/internal/config"
+	"github.com/Michal-Nithesh/miccord/internal/consts"
+	"github.com/Michal-Nithesh/miccord/internal/logger"
+	"github.com/Michal-Nithesh/miccord/internal/ui/root"
 	"github.com/ayn2op/arikawa/v3/utils/ws"
 	"github.com/ayn2op/tview"
 	"github.com/gdamore/tcell/v3"
@@ -19,7 +19,7 @@ func Run() error {
 		out := flag.CommandLine.Output()
 		_, _ = fmt.Fprintf(out, "%s - %s\n\n", consts.DisplayName, consts.Tagline) //nolint:errcheck
 		_, _ = fmt.Fprintf(out, "Usage:\n  %s [options]\n\n", consts.Name)         //nolint:errcheck
-		_, _ = fmt.Fprintf(out, "Options:\n")                                       //nolint:errcheck
+		_, _ = fmt.Fprintf(out, "Options:\n")                                      //nolint:errcheck
 		flag.PrintDefaults()
 	}
 

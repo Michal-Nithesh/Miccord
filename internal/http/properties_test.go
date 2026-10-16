@@ -5,7 +5,7 @@ import (
 	"testing"
 	"uuid"
 
-	"github.com/Michal-Nithesh/MichalTerm/internal/tls"
+	"github.com/Michal-Nithesh/miccord/internal/tls"
 	"github.com/ayn2op/arikawa/v3/gateway"
 )
 

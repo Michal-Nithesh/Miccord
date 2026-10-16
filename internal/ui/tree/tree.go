@@ -1,9 +1,9 @@
-// Package tree holds what MichalTerm's trees share.
+// Package tree holds what Miccord's trees share.
 package tree
 
 import (
-	"github.com/Michal-Nithesh/MichalTerm/internal/config"
-	"github.com/Michal-Nithesh/MichalTerm/internal/ui"
+	"github.com/Michal-Nithesh/miccord/internal/config"
+	"github.com/Michal-Nithesh/miccord/internal/ui"
 	"github.com/ayn2op/tview"
 	"github.com/ayn2op/tview/box"
 	"github.com/ayn2op/tview/keybind"

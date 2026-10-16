@@ -3,9 +3,9 @@ package root
 import (
 	"log/slog"
 
-	"github.com/Michal-Nithesh/MichalTerm/internal/consts"
-	"github.com/Michal-Nithesh/MichalTerm/internal/ui/chat"
-	"github.com/Michal-Nithesh/MichalTerm/internal/ui/login"
+	"github.com/Michal-Nithesh/miccord/internal/consts"
+	"github.com/Michal-Nithesh/miccord/internal/ui/chat"
+	"github.com/Michal-Nithesh/miccord/internal/ui/login"
 	"github.com/ayn2op/tview"
 	"github.com/zalando/go-keyring"
 	"golang.design/x/clipboard"
@@ -34,10 +34,12 @@ func getToken() tview.Cmd {
 	return func() tview.Msg {
 		token, err := keyring.Get(keyringService, keyringUser)
 		if err != nil {
-			if legacyToken, legacyErr := keyring.Get(consts.LegacyName, keyringUser); legacyErr == nil && legacyToken != "" {
-				slog.Info("migrated token from legacy keyring service", "legacyService", consts.LegacyName)
-				_ = keyring.Set(keyringService, keyringUser, legacyToken)
-				return tokenMsg(legacyToken)
+			for _, legacyService := range []string{consts.LegacyMichalTerm, consts.LegacyDiscordo} {
+				if legacyToken, legacyErr := keyring.Get(legacyService, keyringUser); legacyErr == nil && legacyToken != "" {
+					slog.Info("migrated token from legacy keyring service", "legacyService", legacyService)
+					_ = keyring.Set(keyringService, keyringUser, legacyToken)
+					return tokenMsg(legacyToken)
+				}
 			}
 			slog.Info("failed to retrieve token from keyring", "err", err)
 			return loginMsg{}

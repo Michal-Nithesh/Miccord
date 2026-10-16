@@ -3,11 +3,11 @@ package login
 import (
 	"github.com/ayn2op/tview/tabs"
 
-	"github.com/Michal-Nithesh/MichalTerm/internal/config"
-	"github.com/Michal-Nithesh/MichalTerm/internal/ui"
-	"github.com/Michal-Nithesh/MichalTerm/internal/ui/login/password"
-	"github.com/Michal-Nithesh/MichalTerm/internal/ui/login/qr"
-	"github.com/Michal-Nithesh/MichalTerm/internal/ui/login/token"
+	"github.com/Michal-Nithesh/miccord/internal/config"
+	"github.com/Michal-Nithesh/miccord/internal/ui"
+	"github.com/Michal-Nithesh/miccord/internal/ui/login/password"
+	"github.com/Michal-Nithesh/miccord/internal/ui/login/qr"
+	"github.com/Michal-Nithesh/miccord/internal/ui/login/token"
 	"github.com/ayn2op/tview"
 	"github.com/ayn2op/tview/column"
 )

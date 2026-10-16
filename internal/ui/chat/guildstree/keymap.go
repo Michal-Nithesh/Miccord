@@ -3,7 +3,7 @@ package guildstree
 import (
 	"slices"
 
-	uitree "github.com/Michal-Nithesh/MichalTerm/internal/ui/tree"
+	uitree "github.com/Michal-Nithesh/miccord/internal/ui/tree"
 	"github.com/ayn2op/arikawa/v3/discord"
 	"github.com/ayn2op/tview/help"
 	"github.com/ayn2op/tview/keybind"
